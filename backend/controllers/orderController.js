@@ -129,10 +129,9 @@ export const updateStatus = async (req, res) => {
       message: "Order status updated"
     });
   } catch (error) {
-    console.log(error);
-    res.json({
-      success: false,
-      message: "Error updating status"
+    console.log("PLACE ORDER ERROR:", error);
+    res.status(500).json({
+        success: false,
+        message: error.message
     });
-  }
-};
+}
