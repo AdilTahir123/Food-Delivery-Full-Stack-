@@ -25,22 +25,29 @@ const StoreContextProvider=(props)=>{
                 await axios.post(`${url}/api/cart/remove`,{itemId},{headers:{token}});
             }
     }
-    const getTotalCartAmount=()=>{
-        let totalAmount=0;
-        for(const item in cartItems){
-            if(cartItems[item]>0){
-                let itemInfo=food_list.find((food)=>food._id===item);
-                totalAmount+=cartItems[item]*itemInfo.price;
-            }
-        }
-        return totalAmount;
+
+  const getTotalCartAmount = () => {
+  let totalAmount = 0;
+
+  for (const item in cartItems) {
+    if (cartItems[item] > 0) {
+      const itemInfo = food_list.find((food) => food._id === item);
+
+      if (!itemInfo) continue;
+
+      totalAmount += cartItems[item] * itemInfo.price;
     }
+  }
+
+  return totalAmount;
+}
+
     const fetchFoodList=async()=>{
         const response=await axios.get(url+"/api/food/list");
         setFoodList(response.data.data);
     }
     const loadCartData=async (token)=>{
-        const response=await axios.post(`${url}/api/cart/get`,{},{headers:{token}});
+        const response=await axios.post(`${url}/api/cart/get`,{},{headers:{token}});            
         setCartItems(response.data.cartData);
     }
     useEffect(()=>{

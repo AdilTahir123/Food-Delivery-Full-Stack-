@@ -1,23 +1,37 @@
 import React, { useState} from "react";
+console.log(React);
 import "./Add.css";
+// console.log('./Add.css');
 import { assets } from "../../assets/assets.js";
+console.log(assets);
 import axios from "axios";
+console.log(axios);
 import { toast } from "react-toastify";
+console.log(toast);
 const Add = ({url}) => {
+  // console.log(url);
   const [image,setImage]=useState(false);
+  // console.log(image);
+
   const [data,setData]=useState({
     name:"",
     description:"",
     price:"",
     category:"Salad",
   });
+  // console.log(data);
   const onChangeHandler=(e)=>{
+    // console.log("Welcome",e.target.value);
     setData({...data,[e.target.name]:e.target.value});
   }
+  // console.log(onChangeHandler);
+  // console.log(data);
   const onSubmitHandler=async (e)=>{
+    
     e.preventDefault();
     const formData=new FormData();
     formData.append("image",image);
+    
     formData.append("name",data.name);
     formData.append("description",data.description);
     formData.append("price",data.price);
@@ -54,6 +68,7 @@ const Add = ({url}) => {
         <div className="add-product-description flex-col">
           <p>Product Description</p>
           <textarea onChange={onChangeHandler} value={data.description} name="description" rows="6" placeholder="Write Content"></textarea>
+          
         </div>
         <div className="add-category-price">
           <div className="add-category flex-col">

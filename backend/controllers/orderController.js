@@ -3,13 +3,12 @@ import userModel from "../models/userModel.js";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
 // =====================
 // PLACE ORDER USING STRIPE
 // =====================
 export const placeOrder = async (req, res) => {
   try {
-    const frontend_url = process.env.FRONTEND_URL;
+    const frontend_url = process.env.FRONTEND_URL || 'http://localhost:5174'; // fallbackprocess.env.FRONTEND_URL;
 
     // calculate amount on backend for security
     let amount = 0;
@@ -69,7 +68,7 @@ export const placeOrder = async (req, res) => {
     res.json({ success: false, message: "Error" });
   }
 };
-
+// main session here 
 // =====================
 // VERIFY ORDER
 // =====================

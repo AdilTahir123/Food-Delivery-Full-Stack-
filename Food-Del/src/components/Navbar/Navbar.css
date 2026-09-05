@@ -3,7 +3,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 0px;
+  
 }
+
 .navbar .logo {
   width: 130px;
 }
@@ -122,5 +124,134 @@
 @media (max-width: 750px) {
   .navbar .navbar-menu {
     display: none;
+  }
+}
+
+/* =========================
+   SEARCH WRAPPER
+========================= */
+.navbar-search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 24px; /* icon ke liye space */
+}
+
+/* Search icon */
+.search-trigger-icon {
+  width: 24px;
+  cursor: pointer;
+  display: block;
+}
+
+/* Floating absolute search box */
+.navbar-search-popup {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 270px;
+  height: 44px;
+  background: #fff;
+  border-radius: 30px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  z-index: 999;
+  animation: searchPopup 0.3s ease;
+}
+
+/* Input */
+.navbar-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Placeholder */
+.navbar-search-input::placeholder {
+  color: #999;
+}
+
+/* Close button */
+.search-close-btn {
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  line-height: 1;
+  user-select: none;
+}
+
+.search-close-btn:hover {
+  color: tomato;
+}
+
+/* Animation */
+@keyframes searchPopup {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* =========================
+   MEDIA QUERIES
+========================= */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .navbar-search-popup {
+    width: 220px;
+    right: 0;
+    height: 40px;
+    padding: 0 12px;
+  }
+
+  .navbar-search-input {
+    font-size: 13px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .navbar-search-popup {
+    width: 180px;
+    right: 0;
+    height: 38px;
+    padding: 0 10px;
+  }
+
+  .navbar-search-input {
+    font-size: 12px;
+  }
+
+  .search-close-btn {
+    font-size: 16px;
+  }
+
+  .search-trigger-icon {
+    width: 20px;
+  }
+}
+
+/* Very small mobile */
+@media (max-width: 400px) {
+  .navbar-search-popup {
+    width: 150px;
+    right: 0;
+  }
+
+  .navbar-search-input::placeholder {
+    font-size: 11px;
   }
 }
