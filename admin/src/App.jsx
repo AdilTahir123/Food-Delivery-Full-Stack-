@@ -8,7 +8,7 @@ import { Routes, Route } from 'react-router-dom'
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
-  const url="http://localhost:4000";
+  const url = 'https://food-delivery-full-stack-six.vercel.app';
 
   return (
       <div>
