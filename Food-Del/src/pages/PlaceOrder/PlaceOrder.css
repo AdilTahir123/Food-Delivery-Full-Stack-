@@ -32,3 +32,8 @@
 .place-order-right .cart-total button{
     margin-top: 30px;
 }
+.place-order-left input[type="email"] {
+    margin-left: 20px;
+    width: calc(100% - 20px);
+    box-sizing: border-box;
+}
