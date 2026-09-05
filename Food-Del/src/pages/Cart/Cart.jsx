@@ -6,13 +6,14 @@ import { StoreContext } from "../../components/context/StoreContext";
 
 import { useNavigate } from "react-router-dom";
 
-const Cart = () => {
+const Cart = ({ setShowLogin }) => {
 
   const {
     cartItems,
     food_list,
     removeFromCart,
-    getTotalCartAmount
+    getTotalCartAmount,
+    token
   } = useContext(StoreContext);
 
   const navigate = useNavigate();
@@ -100,7 +101,9 @@ const Cart = () => {
 
           <div className="cart-total-details">
             <p>Delivery Fee</p>
-            <p>${getTotalCartAmount() > 0 ? 2 : 0}</p>
+            <p>
+              ${getTotalCartAmount() > 0 ? 2 : 0}
+            </p>
           </div>
 
           <hr />
@@ -108,11 +111,21 @@ const Cart = () => {
           <div className="cart-total-details">
             <p>Total</p>
             <p>
-              ${getTotalCartAmount() + (getTotalCartAmount() > 0 ? 2 : 0)}
+              $
+              {getTotalCartAmount() +
+                (getTotalCartAmount() > 0 ? 2 : 0)}
             </p>
           </div>
 
-          <button onClick={() => navigate("/order")}>
+          <button
+            onClick={() => {
+              if (!token) {
+                setShowLogin(true);
+              } else {
+                navigate("/order");
+              }
+            }}
+          >
             Proceed to checkout
           </button>
 
@@ -122,7 +135,9 @@ const Cart = () => {
 
           <div>
 
-            <p>If you have a promo code, Enter it here</p>
+            <p>
+              If you have a promo code, Enter it here
+            </p>
 
             <div className="cart-promocode-input">
 
@@ -131,7 +146,9 @@ const Cart = () => {
                 placeholder="enter promo code"
               />
 
-              <button>Submit</button>
+              <button>
+                Submit
+              </button>
 
             </div>
 
@@ -144,7 +161,6 @@ const Cart = () => {
     </div>
 
   );
-
 };
 
 export default Cart;
